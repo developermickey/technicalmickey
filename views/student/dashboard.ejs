@@ -23,7 +23,7 @@
             <p class="font-semibold truncate"><%= order.course.title %></p>
             <p class="text-sm text-slate-500"><%= order.createdAt.toDateString() %></p>
           </div>
-          <span class="font-bold text-indigo-700">$<%= order.amount %></span>
+          <span class="font-bold text-indigo-700">₹<%= order.amount %></span>
         </div>
       <% }) %>
       <% if (!purchases.length) { %>

@@ -12,7 +12,7 @@
         <p class="text-sm text-slate-500"><%= item.category || 'General' %></p>
       </div>
       <div class="flex items-center gap-3">
-        <span class="font-extrabold text-indigo-700">$<%= item.price %></span>
+        <span class="font-extrabold text-indigo-700">₹<%= item.price %></span>
         <a href="/orders/checkout/<%= item._id %>" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700">Checkout</a>
       </div>
     </div>
