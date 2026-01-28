@@ -1,0 +1,23 @@
+<% const sidebar = '../partials/sidebar-admin'; %>
+<% const activePath = '/admin/quizzes'; %>
+<% const pageTitle = 'Quizzes'; %>
+<% const pageSubtitle = 'Overview of all course quizzes.'; %>
+<%- include('../partials/app-start', { title, sidebar, activePath, pageTitle, pageSubtitle }) %>
+
+<div class="space-y-3">
+  <% quizzes.forEach(quiz => { %>
+    <div class="tm-card p-5">
+      <div class="flex items-center justify-between gap-4">
+        <p class="font-extrabold"><%= quiz.course?.title || 'Course' %></p>
+        <span class="tm-badge"><%= quiz.questions.length %> questions</span>
+      </div>
+      <ul class="text-sm text-slate-700 mt-3 space-y-1">
+        <% quiz.questions.slice(0, 3).forEach(q => { %>
+          <li>• <%= q.question %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('../partials/app-end', { sidebar }) %>

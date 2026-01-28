@@ -1,0 +1,33 @@
+<% const sidebar = '../partials/sidebar-student'; %>
+<% const activePath = '/user/profile'; %>
+<% const pageTitle = 'Profile'; %>
+<% const pageSubtitle = 'Account details and role.'; %>
+<%- include('../partials/app-start', { title, sidebar, activePath, pageTitle, pageSubtitle }) %>
+
+<div class="tm-card p-6">
+  <div class="flex items-center gap-3">
+    <div class="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200/60 flex items-center justify-center font-extrabold text-indigo-700">
+      <%= (user.name || 'U').slice(0,1).toUpperCase() %>
+    </div>
+    <div class="min-w-0">
+      <p class="text-lg font-extrabold truncate"><%= user.name %></p>
+      <p class="text-sm text-slate-500 truncate"><%= user.email %></p>
+    </div>
+    <div class="ml-auto">
+      <span class="tm-badge"><%= user.role %></span>
+    </div>
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-3 mt-6">
+    <div class="tm-card-flat p-4 bg-slate-50">
+      <p class="text-xs uppercase tracking-wide text-slate-500 font-bold">Name</p>
+      <p class="text-sm font-semibold mt-1"><%= user.name %></p>
+    </div>
+    <div class="tm-card-flat p-4 bg-slate-50">
+      <p class="text-xs uppercase tracking-wide text-slate-500 font-bold">Email</p>
+      <p class="text-sm font-semibold mt-1"><%= user.email %></p>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/app-end', { sidebar }) %>

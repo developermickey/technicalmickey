@@ -1,0 +1,30 @@
+<div class="bg-white border border-slate-200/60 rounded-2xl shadow-sm overflow-hidden">
+  <div class="px-4 py-4 border-b border-slate-100">
+    <p class="text-xs uppercase tracking-wide text-slate-500">Admin</p>
+    <p class="font-semibold text-slate-900 mt-1"><%= user?.name || 'Admin' %></p>
+  </div>
+  <nav class="p-2 text-sm">
+    <% const isActive = (p) => (activePath || '').startsWith(p); %>
+    <a href="/admin" class="flex items-center justify-between px-3 py-2 rounded-xl <%= isActive('/admin') && !isActive('/admin/courses') && !isActive('/admin/users') && !isActive('/admin/purchases') && !isActive('/admin/quizzes') ? 'bg-indigo-50 text-indigo-700' : 'text-slate-700 hover:bg-slate-50' %>">
+      <span>Overview</span>
+    </a>
+    <a href="/admin/courses" class="flex items-center justify-between px-3 py-2 rounded-xl <%= isActive('/admin/courses') ? 'bg-indigo-50 text-indigo-700' : 'text-slate-700 hover:bg-slate-50' %>">
+      <span>Courses</span>
+    </a>
+    <a href="/admin/quizzes" class="flex items-center justify-between px-3 py-2 rounded-xl <%= isActive('/admin/quizzes') ? 'bg-indigo-50 text-indigo-700' : 'text-slate-700 hover:bg-slate-50' %>">
+      <span>Quizzes</span>
+    </a>
+    <a href="/admin/users" class="flex items-center justify-between px-3 py-2 rounded-xl <%= isActive('/admin/users') ? 'bg-indigo-50 text-indigo-700' : 'text-slate-700 hover:bg-slate-50' %>">
+      <span>Users</span>
+    </a>
+    <a href="/admin/purchases" class="flex items-center justify-between px-3 py-2 rounded-xl <%= isActive('/admin/purchases') ? 'bg-indigo-50 text-indigo-700' : 'text-slate-700 hover:bg-slate-50' %>">
+      <span>Purchases</span>
+    </a>
+  </nav>
+  <div class="p-3 border-t border-slate-100">
+    <form action="/auth/logout" method="post">
+      <button class="w-full px-3 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 text-sm">Logout</button>
+    </form>
+  </div>
+</div>
+

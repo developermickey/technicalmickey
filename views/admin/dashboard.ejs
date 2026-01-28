@@ -1,0 +1,43 @@
+<% const sidebar = '../partials/sidebar-admin'; %>
+<% const activePath = '/admin'; %>
+<% const pageTitle = 'Admin Overview'; %>
+<% const pageSubtitle = 'Monitor users, courses, sales and revenue at a glance.'; %>
+<%- include('../partials/app-start', { title, sidebar, activePath, pageTitle, pageSubtitle }) %>
+
+<div class="grid md:grid-cols-4 gap-4">
+  <div class="rounded-2xl border border-slate-200/60 bg-white p-5">
+    <p class="text-xs uppercase tracking-wide text-slate-500">Users</p>
+    <div class="text-3xl font-extrabold mt-2"><%= totalUsers %></div>
+    <a href="/admin/users" class="inline-flex mt-4 text-sm font-semibold text-indigo-700 hover:underline">View users</a>
+  </div>
+  <div class="rounded-2xl border border-slate-200/60 bg-white p-5">
+    <p class="text-xs uppercase tracking-wide text-slate-500">Courses</p>
+    <div class="text-3xl font-extrabold mt-2"><%= totalCourses %></div>
+    <a href="/admin/courses" class="inline-flex mt-4 text-sm font-semibold text-indigo-700 hover:underline">Manage courses</a>
+  </div>
+  <div class="rounded-2xl border border-slate-200/60 bg-white p-5">
+    <p class="text-xs uppercase tracking-wide text-slate-500">Sales</p>
+    <div class="text-3xl font-extrabold mt-2"><%= totalSales %></div>
+    <a href="/admin/purchases" class="inline-flex mt-4 text-sm font-semibold text-indigo-700 hover:underline">View purchases</a>
+  </div>
+  <div class="rounded-2xl border border-slate-200/60 bg-gradient-to-br from-emerald-50 to-white p-5">
+    <p class="text-xs uppercase tracking-wide text-slate-500">Revenue</p>
+    <div class="text-3xl font-extrabold mt-2">$<%= revenue %></div>
+    <p class="text-sm text-slate-500 mt-4">Paid orders only</p>
+  </div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-4 mt-6">
+  <a href="/admin/courses" class="rounded-2xl border border-slate-200/60 bg-slate-900 text-white p-5 hover:bg-slate-800">
+    <div class="text-sm text-white/80">Quick action</div>
+    <div class="text-lg font-bold mt-1">Create / publish a course</div>
+    <div class="text-sm text-white/80 mt-2">Add topics, lectures and quiz in one place.</div>
+  </a>
+  <a href="/admin/purchases" class="rounded-2xl border border-slate-200/60 bg-white p-5 hover:bg-slate-50">
+    <div class="text-sm text-slate-500">Review</div>
+    <div class="text-lg font-bold mt-1">Latest purchases</div>
+    <div class="text-sm text-slate-600 mt-2">Track revenue and validate transactions.</div>
+  </a>
+</div>
+
+<%- include('../partials/app-end', { sidebar }) %>

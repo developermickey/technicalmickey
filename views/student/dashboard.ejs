@@ -1,0 +1,36 @@
+<% const sidebar = '../partials/sidebar-student'; %>
+<% const activePath = '/user/dashboard'; %>
+<% const pageTitle = 'Student Dashboard'; %>
+<% const pageSubtitle = 'Quick access to your courses, purchases, and learning tools.'; %>
+<%- include('../partials/app-start', { title, sidebar, activePath, pageTitle, pageSubtitle }) %>
+
+<div class="grid md:grid-cols-3 gap-4">
+  <div class="rounded-2xl border border-slate-200/60 bg-gradient-to-br from-indigo-50 to-white p-5">
+    <p class="text-xs uppercase tracking-wide text-slate-500">Purchased courses</p>
+    <div class="text-3xl font-extrabold mt-2"><%= totalCourses %></div>
+    <a href="/my-courses" class="inline-flex mt-4 text-sm font-semibold text-indigo-700 hover:underline">Go to My Courses</a>
+  </div>
+
+  <div class="md:col-span-2">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-base font-bold">Recent purchases</h2>
+      <a href="/courses" class="text-sm font-semibold text-indigo-700 hover:underline">Browse courses</a>
+    </div>
+    <div class="divide-y divide-slate-100 rounded-2xl border border-slate-200/60 overflow-hidden bg-white">
+      <% purchases.forEach(order => { %>
+        <div class="px-4 py-4 flex items-center justify-between gap-4">
+          <div class="min-w-0">
+            <p class="font-semibold truncate"><%= order.course.title %></p>
+            <p class="text-sm text-slate-500"><%= order.createdAt.toDateString() %></p>
+          </div>
+          <span class="font-bold text-indigo-700">$<%= order.amount %></span>
+        </div>
+      <% }) %>
+      <% if (!purchases.length) { %>
+        <div class="px-4 py-8 text-sm text-slate-500">No purchases yet.</div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/app-end', { sidebar }) %>

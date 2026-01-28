@@ -1,0 +1,15 @@
+<%- include('partials/head', { title }) %>
+<body class="bg-slate-50">
+<%- include('partials/navbar') %>
+<div class="max-w-2xl mx-auto px-4 py-20">
+  <div class="tm-card p-10 text-center">
+    <div class="mx-auto w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200/60 flex items-center justify-center font-extrabold text-slate-900">?</div>
+    <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 mt-5">404</h1>
+    <p class="text-slate-600 mt-2">The page you are looking for could not be found.</p>
+    <div class="mt-6 flex gap-2 justify-center">
+      <a href="/" class="tm-btn tm-btn-primary" style="padding:12px 16px;">Back to home</a>
+      <a href="/courses" class="tm-btn tm-btn-ghost" style="padding:12px 16px;">Browse courses</a>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

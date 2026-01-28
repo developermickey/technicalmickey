@@ -1,0 +1,81 @@
+<% const sidebar = '../partials/sidebar-admin'; %>
+<% const activePath = '/admin/courses'; %>
+<% const pageTitle = 'Edit Course'; %>
+<% const pageSubtitle = course.title; %>
+<%- include('../partials/app-start', { title, sidebar, activePath, pageTitle, pageSubtitle }) %>
+
+<div class="space-y-5">
+  <div class="tm-card p-6">
+    <h2 class="text-lg font-extrabold mb-4">Details</h2>
+    <form method="post" action="/admin/courses/<%= course._id %>" enctype="multipart/form-data" class="grid md:grid-cols-2 gap-3">
+      <input name="title" value="<%= course.title %>" class="tm-input" required>
+      <input name="price" value="<%= course.price %>" type="number" step="0.01" class="tm-input" required>
+      <input name="category" value="<%= course.category %>" class="tm-input" placeholder="Category">
+      <input name="thumbnail" type="file" class="tm-input">
+      <textarea name="description" class="md:col-span-2 tm-input" rows="3"><%= course.description %></textarea>
+      <div class="flex flex-wrap gap-3 items-center md:col-span-2">
+        <label class="text-sm font-semibold text-slate-700 inline-flex items-center gap-2">
+          <input type="checkbox" name="published" <%= course.published ? 'checked' : '' %> >
+          Published
+        </label>
+        <button class="tm-btn tm-btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="tm-card p-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+      <h2 class="text-lg font-extrabold">Topics & Lectures</h2>
+      <form method="post" action="/admin/courses/<%= course._id %>/topics" class="flex gap-2">
+        <input name="title" placeholder="New topic title" class="tm-input" />
+        <button class="tm-btn tm-btn-primary">Add topic</button>
+      </form>
+    </div>
+    <div class="space-y-4">
+      <% course.topics.forEach(topic => { %>
+        <div class="tm-card-flat p-4 bg-slate-50">
+          <div class="flex items-center justify-between mb-2">
+            <p class="font-extrabold text-slate-900 text-sm"><%= topic.title %></p>
+            <span class="text-xs text-slate-500 font-bold"><%= topic.lectures.length %> lectures</span>
+          </div>
+          <ul class="space-y-1 text-sm text-slate-700 mb-3">
+            <% topic.lectures.forEach(lec => { %>
+              <li>• <span class="font-semibold"><%= lec.title %></span> <span class="text-slate-500">(<%= lec.duration || 'N/A' %>)</span></li>
+            <% }) %>
+          </ul>
+          <form method="post" action="/admin/topics/<%= topic._id %>/lectures" class="grid md:grid-cols-3 gap-2">
+            <input name="title" placeholder="Lecture title" class="tm-input">
+            <input name="videoUrl" placeholder="Video URL (embed)" class="tm-input">
+            <input name="duration" placeholder="Duration (e.g. 10:05)" class="tm-input">
+            <button class="tm-btn tm-btn-ghost md:col-span-3">Add lecture</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <div class="tm-card p-6">
+    <h2 class="text-lg font-extrabold mb-4">Quiz</h2>
+    <form method="post" action="/admin/courses/<%= course._id %>/quiz" class="grid md:grid-cols-2 gap-2">
+      <input name="question" placeholder="Question" class="tm-input md:col-span-2">
+      <input name="option1" placeholder="Option 1" class="tm-input">
+      <input name="option2" placeholder="Option 2" class="tm-input">
+      <input name="option3" placeholder="Option 3" class="tm-input">
+      <input name="option4" placeholder="Option 4" class="tm-input">
+      <input name="correctAnswer" type="number" min="0" max="3" value="0" class="tm-input">
+      <button class="tm-btn tm-btn-primary md:col-span-2">Save quiz</button>
+    </form>
+    <% if (course.quiz) { %>
+      <div class="mt-4 text-sm text-slate-700">
+        <p class="font-extrabold">Existing questions</p>
+        <ul class="mt-2 space-y-1">
+          <% course.quiz.questions.forEach(q => { %>
+            <li>• <%= q.question %></li>
+          <% }) %>
+        </ul>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include('../partials/app-end', { sidebar }) %>

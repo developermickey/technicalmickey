@@ -1,0 +1,19 @@
+<%- include('../partials/head', { title }) %>
+<body class="bg-slate-50">
+<%- include('../partials/navbar') %>
+<main class="max-w-md mx-auto px-4 py-12">
+  <div class="tm-card p-6">
+    <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 mb-2">Login</h1>
+    <p class="text-sm text-slate-500 mb-5">Welcome back — continue learning.</p>
+    <% if (typeof error !== 'undefined') { %>
+      <div class="bg-red-50 text-red-700 p-3 rounded-md mb-4 text-sm"><%= error %></div>
+    <% } %>
+    <form method="post" action="/auth/login" class="space-y-4">
+      <input name="email" type="email" placeholder="Email" required class="w-full tm-input">
+      <input name="password" type="password" placeholder="Password" required class="w-full tm-input">
+      <button class="w-full tm-btn tm-btn-primary" style="padding:14px 16px;font-size:15px;">Login</button>
+    </form>
+    <p class="text-sm text-slate-600 mt-4">No account? <a href="/auth/register" class="text-indigo-700 font-extrabold hover:underline">Register</a></p>
+  </div>
+</main>
+<%- include('../partials/footer') %>

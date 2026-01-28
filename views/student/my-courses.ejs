@@ -1,0 +1,32 @@
+<% const sidebar = '../partials/sidebar-student'; %>
+<% const activePath = '/my-courses'; %>
+<% const pageTitle = 'My Courses'; %>
+<% const pageSubtitle = 'Continue where you left off and track your progress.'; %>
+<%- include('../partials/app-start', { title, sidebar, activePath, pageTitle, pageSubtitle }) %>
+
+<div class="grid md:grid-cols-3 gap-4">
+  <% courses.forEach(course => { %>
+    <div class="group rounded-2xl border border-slate-200/60 bg-white overflow-hidden shadow-sm hover:shadow-md transition">
+      <div class="h-36 bg-slate-100 overflow-hidden">
+        <img src="<%= course.thumbnail || 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60' %>" class="h-36 w-full object-cover group-hover:scale-[1.02] transition" />
+      </div>
+      <div class="p-4 flex flex-col gap-2">
+        <h3 class="text-base font-bold tracking-tight"><%= course.title %></h3>
+        <p class="text-sm text-slate-600 line-clamp-2"><%= course.description %></p>
+        <div class="pt-2">
+          <a href="/learn/<%= course._id %>" class="inline-flex w-full justify-center px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700">
+            Continue learning
+          </a>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+
+  <% if (!courses.length) { %>
+    <div class="rounded-2xl border border-slate-200/60 bg-white p-6 text-sm text-slate-600">
+      You have not purchased any courses yet. <a href="/courses" class="font-semibold text-indigo-700 hover:underline">Browse courses</a>.
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/app-end', { sidebar }) %>

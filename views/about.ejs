@@ -1,0 +1,28 @@
+<%- include('partials/head', { title }) %>
+<body class="bg-slate-50">
+<%- include('partials/navbar') %>
+<main class="max-w-7xl mx-auto px-4 lg:px-6 py-10">
+  <div class="tm-card p-8">
+    <p class="tm-badge">About</p>
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-3">TechMickey Academy</h1>
+    <p class="text-slate-600 mt-3 max-w-2xl">
+      We build practical, project-based courses to help developers level up quickly — with videos, quizzes,
+      certificates, and a clean learning experience.
+    </p>
+    <div class="grid md:grid-cols-3 gap-4 mt-8">
+      <div class="tm-card-flat p-5 bg-slate-50">
+        <div class="font-extrabold text-slate-900">Modern UI</div>
+        <p class="text-sm text-slate-600 mt-1">A clean, consistent layout across public, student, and admin pages.</p>
+      </div>
+      <div class="tm-card-flat p-5 bg-slate-50">
+        <div class="font-extrabold text-slate-900">Secure access</div>
+        <p class="text-sm text-slate-600 mt-1">JWT auth + role protection + purchase-only course access.</p>
+      </div>
+      <div class="tm-card-flat p-5 bg-slate-50">
+        <div class="font-extrabold text-slate-900">Payments + certificates</div>
+        <p class="text-sm text-slate-600 mt-1">PhonePe checkout flow + PDF certificate generation.</p>
+      </div>
+    </div>
+  </div>
+</main>
+<%- include('partials/footer') %>

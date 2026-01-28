@@ -1,0 +1,43 @@
+<nav class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200/60">
+  <div class="max-w-7xl mx-auto px-4 lg:px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a href="/" class="text-lg font-extrabold tracking-tight text-slate-900">
+        <span class="text-indigo-600">Tech</span>Mickey
+      </a>
+      <a href="/courses" class="hidden md:inline text-sm font-semibold text-slate-700 hover:text-indigo-700">Courses</a>
+      <a href="/about" class="hidden md:inline text-sm font-semibold text-slate-700 hover:text-indigo-700">About</a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <% if (user) { %>
+        <a href="/cart" class="hidden sm:inline-flex items-center px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">Cart</a>
+
+        <% const homeLink = user.role === 'admin' ? '/admin' : '/user/dashboard'; %>
+        <a href="<%= homeLink %>" class="hidden sm:inline-flex items-center px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">
+          <%= user.role === 'admin' ? 'Admin' : 'Dashboard' %>
+        </a>
+
+        <div class="relative group">
+          <button type="button" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold">
+            <span class="max-w-[120px] truncate"><%= user.name %></span>
+            <span class="text-white/70 text-xs"><%= user.role %></span>
+          </button>
+          <div class="hidden group-hover:block absolute right-0 mt-2 w-56 bg-white border border-slate-200/60 rounded-2xl shadow-lg overflow-hidden">
+            <a href="/user/profile" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50">Profile</a>
+            <a href="/my-courses" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50">My Courses</a>
+            <% if (user.role === 'admin') { %>
+              <a href="/admin/courses" class="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50">Manage Courses</a>
+            <% } %>
+            <div class="border-t border-slate-100"></div>
+            <form action="/auth/logout" method="post" class="p-2">
+              <button class="w-full px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800">Logout</button>
+            </form>
+          </div>
+        </div>
+      <% } else { %>
+        <a href="/auth/login" class="inline-flex items-center px-3 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">Login</a>
+        <a href="/auth/register" class="inline-flex items-center px-3 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700">Register</a>
+      <% } %>
+    </div>
+  </div>
+</nav>
